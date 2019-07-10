@@ -1,0 +1,6 @@
+db/
+db_test/
+node_modules/
+vendor/
+.DS_Store
+.idea

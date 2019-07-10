@@ -1,0 +1,55 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:1.14-alpine
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+      - ./src/public:/var/www/laravel/public
+    ports:
+      - 8000:80
+    links:
+      - phpfpm
+    depends_on:
+      - phpfpm
+  phpfpm:
+    build:
+      context: .
+      dockerfile: ./php/Dockerfile
+    volumes:
+      - ./src:/var/www/laravel
+    links:
+      - mysql
+      - mysql_test
+    depends_on:
+      - mysql
+      - mysql_test
+    environment:
+      - DB_HOST=mysql
+      - DB_DATABASE=sample
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+      - REDIS_HOST=redis
+      - DB_TEST_HOST=mysql_test
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3406:3306"
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=sample
+
+  mysql_test:
+    image: mysql:5.7
+    ports:
+      - "3506:3306"
+    volumes:
+      - ./db_test:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=sample
+  redis:
+    image: redis:5.0-alpine
+    ports:
+      - "46379:6379"
