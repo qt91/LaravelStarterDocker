@@ -20,5 +20,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 USER laravel
 RUN composer global require "laravel/installer" && composer global require "phpunit/phpunit"
+# setup laravel
+cd /home/laravel/ | laravel new
 ENV PATH $PATH:/home/laravel/.composer/vendor/bin
-
