@@ -13,8 +13,8 @@ services:
       - phpfpm
   phpfpm:
     build:
-      context: .
-      dockerfile: ./php/Dockerfile
+      context: php
+      dockerfile: Dockerfile
     volumes:
       - ./src:/var/www/laravel
     links:
