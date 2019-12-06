@@ -14,8 +14,14 @@ It is a sample for start project laravel with docker very fast to demo or test
 ```
 ## Access to site
 ```
-http://localhost:8000/
+http://localhost:8000
+http://localhost:8025
 ```
+
+## How to check send email
+Access to domain `http://localhost:8025`
+
+When you have send new email, at web have new mail
 
 ## Author
 
