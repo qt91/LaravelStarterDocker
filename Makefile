@@ -1,4 +1,4 @@
-folderName = $(notdir $(CURDIR))
+folderName = $(shell echo $(notdir $(CURDIR)) | tr A-Z a-z)
 start: stop
 	docker-compose up -d
 stop:
