@@ -6,7 +6,7 @@ services:
       - ./nginx/conf.d/:/etc/nginx/conf.d/
       - ./src/public:/var/www/laravel/public
     ports:
-      - 8000:80
+      - 8001:80
     links:
       - phpfpm
     depends_on:
